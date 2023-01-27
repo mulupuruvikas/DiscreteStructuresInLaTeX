@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}	% Para caracteres en español
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{multirow,booktabs}
+\usepackage[table]{xcolor}
+\usepackage{fullpage}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+\usepackage{empheq}
+\usepackage{framed}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8x]{inputenc}
+\colorlet{shadecolor}{orange!15}
+\parindent 0in
+\parskip 12pt
+\geometry{margin=1in, headsep=0.25in}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{reg}{Rule}
+\newtheorem{exer}{Exercise}
+\newtheorem{note}{Note}
+\begin{document}
+\setcounter{section}{0}
+\title{Chapter 9 Review Notes}
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE \bf CSCI 2011 Discrete Structures Notes}\\
+{\large Prof. James Moen}\\
+{\large Vikas Mulupuru}\\
+Spring 2023
+\end{center}
+\section{Chapter 1}
+\subsection{Week 1 Lecture}
+
+\textbf{Not \textit{p}:} The opposite of p\\ \textbf{\textit{p} and \textit{q}:} True if \textit{p} AND \textit{q} are true. Else false.\\ \textbf{Inclusive \textit{or}:} True if 1 or more of \textit{p} or \textit{q} are true. Else false. \\ \textbf{Exclusive \textit{or}:} True if only 1 of \textit{p} or \textit{q} are true.  Else false. \\ \textbf{Implies:} True if \textit{p} is false or if \textit{q} is true \\ \textbf{Biconditional:} True if p and q are the same boolean. Else False. 
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Notation & Symbol & English \\
+ \hline
+ !\textit{p} OR \~ \textit{p} & ¬p & not \textit{p} \\
+ \textit{p} \& \textit{q} & \textit{p} $\land$ \textit{q} & \textit{p} and \textit{q} \\ \textit{p} | \textit{q} & \textit{p} $\lor$ \textit{q} & \textit{p} or \textit{q} (incl) \\ \textit{p} $\textasciicircum$ \textit{q} & \textit{p} $\oplus$ \textit{q} & \textit{p} or \textit{q} (excl) \\ & \textit{p} $\implies$ \textit{q} & \textit{p} impl \textit{q} \\ & \textit{p} $\iff$ \textit{q} & \textit{p} bicond \textit{q} \\
+ \hline
+\end{tabular}
+\quad
+\\
+\begin{tabular}{ |c|c|c|c|c|c|c|c| }
+\hline
+\textit{p} & \textit{q} & $\neg$ \textit{p} & \textit{p} $\land$ \textit{q} &  \textit{p} $\lor$ \textit{q} & \textit{p} $\oplus$ \textit{q} &
+\textit{p} $\implies$ \textit{q} & \textit{p} $\iff$ \textit{q}
+\\
+\hline
+T & T & F & T & T & F & T & T
+\\
+T & F & F & F & T & T & F & F
+\\
+F & T & T & F & T & T & T & F
+\\
+F & F & T & F & F & F & T & T
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Satisfiable expression:} If an expression is TRUE for SOME values of it's variables. \\
+\textbf{Unsatisfiable expression:} If an expression is FALSE for ALL values of it's variables. \\
+\textbf{Tautology:} If an expression is TRUE for ALL values of it's variables.
+\begin{equation}
+¬(\textit{p} \land \textit{q}) \equiv \neg \textit{p} \lor \neg \textit{q}
+\end{equation}
+ 
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c| }
+\hline
+\textit{p} & \textit{q} & \textit{p} \land \textit{q} & \neg (\textit{p} \land \textit{q}) & \neg \textit{p} & \neg\textit{q} & \neg\textit{p} \lor \neg\textit{q} \\
+\hline
+T & F & F & T & F & T & F \\
+T & T & T & F & F & F & F \\
+F & F & F & T & T & T & T \\
+F & T & F & T & T & F & T \\
+\hline
+\end{tabular}
+\\ \caption{Note: Argument proven by cases}
+\end{center}
+
+\begin{shaded}
+\textbf{de Morgan's Law} \newline
+\begin{equation}
+\neg (\textit{p} \land \textit{q}) \equiv \neg \textit{p} \lor \neg \textit{q}
+\end{equation}
+\begin{equation}
+\neg (\textit{p} \lor \textit{q}) \equiv \neg \textit{p} \land \nor \neg \textit{q}
+\end{equation}
+The $\neg$ operation turns $\land$ into $\lor$ and $\lor$ into $\land$
+\end{shaded}
+
+\begin{tabular}{ |c|c|c|c| }
+\hline
+\textit{a} & \textit{b} & \textit{c} & Result \\
+\hline
+F & F & T & T \\
+F & F & F & T \\
+F & T & T & T \\
+F & T & F & F \\
+T & F & T & F \\
+T & F & F & F \\
+T & T & T & T \\
+T & T & F & F \\
+\hline
+\end{tabular}
+Formula \equiv (\neg \textit{a} \land \neg \textit{b} \land \textit{c}) \lor (\neg \textit{a} \land \neg \textit{b} \land \neg \textit{c}) \lor (\neg \textit{a} \land \textit{b} \land \textit{c}) \lor (\textit{a} \land \textit{b} \land \textit{c})
+
+\subsection{Week 2 Lecture}
+ $\neg (\textit{p}_{1} \land \textit{p}_{2} ... \land \textit{p}_{2}) \equiv \neg \textit{p}_{2} \lor \neg \textit{p}_{2} ... \lor \neg \textit{p}_{n} \\
+\neg(\textit{p}_{1} \lor \textit{p}_{2} ... \lor \textit{p}_{n} \equiv \neg \textit{p}_{1} \land \textit{p}_{2} ... \land \neg \textit{p}_{n} $
+\\
+\\
+$\land$ symbol and $\lor$ works similarly with $\sum$ symbol. \\
+For example:
+\[ \lor_{i=1}^{n} = \textit{p}_{1} \lor \textit{p}_{2} ... \lor \textit{p}_{n}\]
+\[ \land_{i=1}^{n} = \textit{p}_{1} \land \textit{p}_{2} ... \land \textit{p}_{n}\]
+\[ \sum_{i=1}^{n} = \textit{p}_{1} + \textit{p}_{2} ... + \textit{p}_{n}\] \\
+\textbf{Rosen's Laws} \\
+\begin{tabular}{|c|c|}
+\hline
+Equivalence & Name \\
+\hline
+\textit{p} $\land$ \textbf{T} $\equiv$ \textit{p} 
+& \\ \textit{p} $\lor$ \textbf{F} $\equiv$ \textit{p}& Identity law \\
+\hline
+\textit{p} $\lor$ \textbf{T} $\equiv$ \textbf{T} & \\ \textit{p} $\land$ \textbf{F} $\equiv$ \textbf{F} & Domination law \\
+\hline
+\textit{p} $\lor$ \textit{p} $\equiv$ \textit{p} & \\  \textit{p} $\land$ \textit{p} $\equiv$ \textit{p} & Indempotent law \\
+\hline
+\neg(\neg\textit{p}) \equiv \textit{p} & Double negation law \\
+\hline
+\textit{p} $\lor$ \textit{q} $\equiv$ \textit{q} $\lor$ \textit{p} & \\ \textit{p} $\land$ \textit{q} $\equiv$ \textit{q} $\land$ \textit{p} & Commutative Law \\
+\hline
+(\textit{p} $\lor$ \textit{q}) $\lor$ \textit{r} $\equiv$ \textit{p} $\lor$ (\textit{q} $\lor$ \textit{r}) & \\ (\textit{p} $\land$ \textit{q}) $\land$ \textit{r} $\equiv$ \textit{p} $\land$ (\textit{q} $\land$ \textit{r}) & Associative law \\
+\hline
+\textit{p} $\lor$ (\textit{q} $\land$ \textit{r}) $\equiv$ (\textit{p} $\lor$ \textit{q}) $\land$ (\textit{p} $\lor$ \textit{r}) & \\ \textit{p} $\land$ (\textit{q} $\lor$ \textit{r}) $\equiv$ (\textit{p} $\land$ \textit{q}) $\lor$ (\textit{p} $\land$ \textit{r}) & Distributive law \\
+\hline
+\textit{p} $\lor$ (\textit{p} $\land$ \textit{q}) $\equiv$ \textit{p} & \\ \textit{p} $\land$ (\textit{p} $\lor$ \textit{q}) $\equiv$ \textit{p} & Absorption law \\
+\hline
+\textit{p} $\lor$ $\neg$ \textit{p} $\equiv$ \textbf{T} & \\
+\textit{p} $\land$ $\neg$ \textit{p} $\equiv$ \textbf{F} & Negation law \\
+\hline
+\end{tabular} \\ \\ \\
+\textbf{Proofs using identities}
+\\
+Show with two-column proof: \neg (\textit{p} \land (\neg \textit{p} \lor \neg \textit{q}) \equiv \neg \textit{p} \land \neg \textit{q}
+\begin{center}
+\begin{tabular} {|c|c|} 
+\hline
+\neg (\textit{p} \lor (\neg \textit{p} \land \neg \textit{q})) & Given \\
+\neg \textit{p} \land \neg (\neg \textit{p} \land \textit{q}) & De Morgan's \\
+\neg \textit{p} \land ( \neg (\neg \textit{p}) \lor \neg \textit{q}) & De Morgan's \\
+\neg \textit{p} \land ( \textit{p} \lor \neg \textit{q}) & Double negation \\
+(\neg \textit{p} \land \textit{p}) \lor (\neg \textit{p} \land \neg \textit{q}) & $\land$ distributes over $\lor$ \\
+\textbf{F} \lor (\neg \textit{p} \land \neg \textit{q}) & Negation Law \\
+\hline
+(\neg \textit{p} \land \neg \textit{q}) & Identity Law (F \lor x \equiv x)\\
+\hline
+\end{tabular}
+\\ \caption{QED}
+\end{center}
+\begin{flushleft}
+Show with two-column proof that $(\textit{p} \land \textit{q}) \implies (\textit{p} \lor \textit{q})$ is a tautology.
+\end{flushleft}
+\begin{center}
+\begin{tabular} {|c|c|}
+\hline
+(\textit{p} \land \textit{q}) \implies (\textit{p} \lor \textit{q}) & Given \\
+\neg (\textit{p} \land \textit{q}) \lor (\textit{p} \lor \textit{q}) & Def of \implies \\
+(\neg \textit{p} \lor \neg \textit{q}) \lor (\textit{p} \lor \textit{q}) & De Morgan's \\
+\neg \textit{p} \lor \neg \textit{q} \lor \textit{p} \lor \textit{q} & Associative Property \\
+\neg \textit{p} \lor \textit{p} \lor \neg \textit{q} \lor \textit{q} & Commutative property \\
+(\neg \textit{p} \lor \textit{p}) \lor (\neg \textit{q} \lor \textit{q}) & Reordering \\
+\textbf{T} $\lor$ \textbf{T}  & Negation Law \\
+\hline
+\textbf{T} & Domination Law \\
+\hline
+\end{tabular} \\
+\caption{QED}
+\end{center} \\
+\begin{flushleft}
+\textbf{Propositional Calculus = predicate calculus} \\
+\textbf{Predicates: }function of n (n > 0) arguments that returns either True or False. All the variables in the predicates are quantifiers.  \\
+x = y   (odd n) \\
+x < y   (even n) \\
+\forall x P(x) \\
+For all x, P(x) is true. x is chosen from some assumed set S. Also can be rewritten as \forall x \equiv S P(x) \\
+Examples: \\
+\forall x [tall(x) \lor short(x)]\\
+\forall n [odd(n) \lor even(n)]\\
+\neg \forall n [odd(n) \land even(n)]\\
+$\forall$: means "for all"
+$\exists$: means "there exists
+
+\textbf{Universal Quantifier:} $\forall$ x, P(x) is True \\
+\textbf{Existential Quantifier:} $\exists$ x, there exists an x \\
+$\forall$ x P(x) $\equiv$ P(S_{1}) $\land$ P(S_{2}) ... $\land$ P(S_{n}) \\
+$\exists$x P(x)  $\equiv$ P(S_{1}) $\lor$ P(S_{2}) ... $\lor$ P(S_{n}) \\
+
+
+\begin{shaded}
+\textbf{de Morgan's Law for Quantifiers} \newline
+\begin{center} \\
+$\neg$ $\forall$x P(x) $\equiv$ $\neg$ (P(S_{1}) $\land$ P(S_{2}) ... $\land$ P(S_{n})  $\equiv$ $\neg$ P(S_{1}) $\lor$ $\neg$P(S_{2})... $\lor \neg$ P(S_{n}) $\equiv$ $\exists$x $\neg$ P(x) \\
+$\neg$ $\exists$x P(x) $\equiv$ $\neg$(P(S_{1}) $\lor$ P(S_{2}) ... $\lor$ P(S_{n}) $\equiv$ $\neg$ P(S_{1}) $\land \neg$ P(S_{2}) ... $\land \neg$ P(S_{n}) $\equiv \forall$x $\neg$ P(x) \\
+\end{center}
+The $\neg$ operation turns $\forall$ into $\exists$ and $\exists$ into $\forall$
+\end{shaded}
+\end{flushleft}
+\end{document}
