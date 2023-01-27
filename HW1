@@ -1,0 +1,101 @@
+\documentclass{article}%
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+%-------------------------------------------
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\setlength{\textwidth}{7.0in}
+\setlength{\oddsidemargin}{-0.35in}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9.0in}
+\setlength{\parindent}{0.3in}
+\begin{document}
+
+\begin{flushright}
+\textbf{Vikas Mulupuru \\
+January 26th, 2013}
+\end{flushright}
+
+\begin{center}
+\textbf{CSCI 2011: Discrete Structures\\
+Homework 1: Truth Tables, Proofs and Functional Completeness} \\
+\end{center}
+\noindent \textbf{Prove that (¬ p $\land$ (p $\lor$ q)) → q is a tautology. Do not use a truth table. Use identities from page 29. Show a reason for each step in your proof. It should look something like the ones on pages 31–32.}
+\\
+\begin{center}
+\begin{tabular} {|c|c|}
+\hline
+($\neg$p $\land$ (p $\lor$ q)) → q & Given \\
+(($\neg$p $\land$ p) $\lor$ ($\neg$p $\land$ q)) → q & Distributive law\\
+(\textbf{F} $\lor$ ($\neg$p $\land$ q)) → q& Negation law \\
+($\neg$p $\land$ q) → q & Identity law \\
+$\neg$($\neg$p $\land$ q) $\lor$ q & Conditional disjunction equivalence \\
+($\neg$($\neg$p) $\lor$ $\neg$q) $\lor$ q & De Morgan's law \\
+(p $\lor$ $\neg$q) $\lor$ q & Double negation law \\
+p $\lor$ ($\neg$q $\lor$ q) & Associative Law \\
+p $\lor$ \textbf{T} & Negation Law \\
+\hline
+\textbf{T} & Domination law \\
+\hline
+
+\end{tabular} \\
+\end{center}
+QED
+\vspace{10mm} \\
+\noindent \textbf{Is ((p → q) $\land$ (q → r)) → (p → r) a tautology? Prove that it is, or that it is not. Use a truth table. Your table must have columns for p, q, r, p → q, q → r, p → r, (p → q) $\land$ (q → r), and ((p → q) $\land$ (q → r)) → (p → r). It should look something like the table on pages 27–28.}
+\\
+\\
+\begin{center}
+\begin{tabular} {|c|c|c|c|c|c|c|c|}
+\hline
+p & q & r & p → q & q → r & p → r & (p → q) $\land$ (q → r) & and ((p → q) $\land$ (q → r)) → (p → r) \\
+\hline
+T & T & T & T & T & T & T & T\\
+T & T & F & T & F & F & F & T\\
+T & F & T & F & T & T & F & T\\
+T & F & F & F & T & F & F & T\\
+F & T & T & T & T & T & T & T\\
+F & T & F & T & F & T & F & T\\
+F & F & T & T & T & T & T & T\\
+F & F & F & T & T & T & T & T\\
+\hline
+
+\end{tabular} \\
+\caption{((p → q) $\land$ (q → r)) → (p → r) is a tautology, proven by cases.}
+\end{center}
+QED
+
+\vspace{10mm}
+
+\noindent \textbf{The connective IF(}\textit{p}, \textit{a}, \textit{b}\textbf{) acts something like an if-statement in a programming language, and is defined by these identities.} \\ \indent IF(\textbf{T}, \textit{a}, \textit{b}) $\equiv$ \textit{a} \\ \indent IF(\textbf{F}, \textit{a}, \textit{b}) $\equiv$ \textit{b} \\ \textbf{Prove that IF is functionally complete, all by itself. The connective IF does not appear in Rosen.}
+\\
+\\
+\begin{center}
+$\neg$\textit{p} $\equiv$ IF(\textit{p}, \textbf{F}, \textbf{T}) \\\vspace{3mm}
+\textit{p} $\lor$ \textit{q} $\equiv$ IF(\textit{p}, \textbf{T}, IF(\textit{q}, \textbf{T}, \textbf{F})) $\equiv$ IF(\textit{p}, \textbf{T}, \textit{q})  \\\vspace{3mm}
+\textit{p} $\land$ \textit{q} $\equiv$ IF(\textit{p}, IF(\textit{q}, \textbf{T}, \textbf{F}), \textbf{F}) $\equiv$ IF(\textit{p}, \textit{q}, \textbf{F})
+\end{center}
+QED
+\end{document}
